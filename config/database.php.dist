@@ -1,0 +1,5 @@
+<?php
+
+$dbh = new PDO('mysql:host=HOSTNAME;dbname=DATABASE', "USERNAME", "PASSWORD");
+
+Registry::set('DB', $dbh);

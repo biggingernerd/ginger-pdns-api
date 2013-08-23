@@ -4,7 +4,10 @@ class Module_Domain extends Module
 {
 	public function indexAction()
 	{
-/* 		return array("index" => "b"); */
+		$model = new Model_Domain();
+		$items = $model->get();
+		
+		return array("domains" => $items);	
 	}
 	
 	public function getAction()

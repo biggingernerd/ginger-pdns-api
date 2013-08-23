@@ -7,3 +7,4 @@ define("MODULES_PATH", APPLICATION_PATH."modules/");
 
 
 include("includes.php");
+include("database.php");
