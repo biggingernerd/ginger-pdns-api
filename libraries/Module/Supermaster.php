@@ -1,23 +1,23 @@
 <?php
 
-class Module_Domain extends Module 
+class Module_Supermaster extends Module 
 {
 	public function indexAction()
 	{
-		$model = new Model_Domain();
+		$model = new Model_Supermaster();
 		$items = $model->get();
 		
-		return array("domains" => $items);	
+		return array("supermasters" => $items);	
 	}
 	
 	public function getAction()
 	{
 		$params = Request::getParams();
 
-		$model = new Model_Domain();
+		$model = new Model_Supermaster();
 		$items = $model->getByParams($params);
 
-		return array("domains" => $items);
+		return array("supermasters" => $items);
 	}
 	
 	public function postAction()

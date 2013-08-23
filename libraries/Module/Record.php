@@ -1,23 +1,23 @@
 <?php
 
-class Module_Domain extends Module 
+class Module_Record extends Module 
 {
 	public function indexAction()
 	{
-		$model = new Model_Domain();
+		$model = new Model_Record();
 		$items = $model->get();
 		
-		return array("domains" => $items);	
+		return array("records" => $items);	
 	}
 	
 	public function getAction()
 	{
 		$params = Request::getParams();
 
-		$model = new Model_Domain();
+		$model = new Model_Record();
 		$items = $model->getByParams($params);
 
-		return array("domains" => $items);
+		return array("records" => $items);
 	}
 	
 	public function postAction()

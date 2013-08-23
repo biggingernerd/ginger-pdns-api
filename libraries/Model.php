@@ -200,6 +200,46 @@
       }
       return $aParams;
     }
+    
+    
+    public function getByParams($params)
+    {
+		$q = array();
+		
+		
+		
+		
+		foreach($params as $key => $val)
+		{
+			if(is_numeric($val))
+			{
+				$q[] = " ".$key." = ? "; 	
+			} else {
+				$q[] = " ".$key." LIKE ? "; 
+			}
+			
+			
+			$params[$key] = str_replace("*", "%", $val);
+		}
+		
+		$values = array_values($params);
+		
+		$stmt = $this->_connection->prepare("SELECT * FROM " . $this->_tableName . " 
+                                           WHERE " . implode(" AND ", $q) . " 
+                                           ORDER BY " . $this->getOrderBy() . " 
+                                           LIMIT " . $this->getOffset() . "," . $this->getLimit());
+      
+      	
+		if($stmt->execute($values))
+		{
+			$items = $stmt->fetchAll();
+			return $items;
+		} else {
+			$this->logError($stmt);
+			return false;
+		}
+		
+    }
 
     /**
      * getByQuery function.
