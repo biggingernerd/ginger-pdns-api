@@ -13,4 +13,4 @@ include("config/config.php");
 
 $request = new Request();
 
-
+Response::Dispatch();

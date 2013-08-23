@@ -13,8 +13,9 @@ class Request {
 	private static $_path 		= false;
 	private static $_resource	= false;
 	private static $_pathParts	= false;
-	private static $_params 	= false;
+	private static $_params 	= array();
 	private static $_method		= false;
+	private static $_action 	= false;
 	
 	
 	public function __construct()
@@ -34,22 +35,53 @@ class Request {
 		$path = (substr($path, -1) == "/") ? substr($path, 0, -1): $path;
 	
 		$parts = self::$_pathParts;
-		
-		foreach($parts as $key => $part)
+
+		if(count($parts) > 0)
 		{
-			if(($key % 2) == 1)
+			foreach($parts as $key => $part)
 			{
-				self::$_params[$parts[$key-1]] = urldecode($part);
-			} else {
-				self::$_params[$part] = "";
+				if(($key % 2) == 1)
+				{
+					self::$_params[$parts[$key-1]] = urldecode($part);
+				} else {
+					if($part != "")
+					{
+						self::$_params[$part] = "";	
+					}
+					
+				}
 			}
 		}
-		
-		// Possible query params
-		$queryString = $_SERVER['QUERY_STRING'];
-		parse_str($queryString, $queryParams);
+		$queryParams = array();
+		if(self::getMethod() == "get")
+		{
+			$queryString = $_SERVER['QUERY_STRING'];
+			parse_str($queryString, $queryParams);	
+		} elseif(self::getMethod() == "post") {
+			$queryParams = $_POST;
+		} elseif(self::getMethod() == "put") {
+			$queryParams = array();
+			parse_raw_http_request($queryParams);
+		}
 		
 		self::$_params = array_merge(self::$_params, $queryParams);
+	}
+
+	public static function setAction($action)
+	{
+		self::$_action = $action;
+	}
+
+	public static function getAction()
+	{
+		if(self::getMethod() == "get" && count(self::getParams()) == 0)
+		{
+			self::$_action = "index";
+		} else {
+			self::$_action = self::getMethod();
+		}
+		
+		return self::$_action;
 	}
 
 	public static function setMethod($method)
@@ -92,6 +124,11 @@ class Request {
 	public static function getPath()
 	{
 		return self::$_path;
+	}
+	
+	public static function getResource()
+	{
+		return self::$_resource;
 	}
 	
 	public static function setUri($uri)
