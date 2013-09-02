@@ -128,6 +128,11 @@ class Request {
 	
 	public static function getResource()
 	{
+		if(self::$_resource == "")
+		{
+			self::$_resource = "index";
+		}
+
 		return self::$_resource;
 	}
 	
