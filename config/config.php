@@ -7,4 +7,11 @@ define("MODULES_PATH", APPLICATION_PATH."modules/");
 
 
 include("includes.php");
+
+if(!is_file("database.php"))
+{
+	echo "Database config file not found. Use database.php.dist to create one.";
+	
+	die();
+}
 include("database.php");

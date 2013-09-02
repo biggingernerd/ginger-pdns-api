@@ -7,7 +7,7 @@ Awesome Ginger PowerDNS Rest API
 How To Install
 --------------
 
-- 1: Put in apache, rewrite all to /index.php
+- 1: Put in apache, rewrite all to /index.php (you could also use the contents of htaccess.txt)
 - 2: Put database credentials to powerdns database in config/database.php (copy file config/database.php.dist)
 - 3: Go to resource by getting /domain (For instance).
 - 4: Receive the (not so) awesome JSON
