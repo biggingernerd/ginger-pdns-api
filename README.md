@@ -23,6 +23,19 @@ Resources
 - record
 - supermaster
 
+GET /domain/ - get all domains
+GET /domain/id/1 - get domain with ID = 1
+POST /domain/ - create new domain
+DELETE /domain/id/1	- delete domain with ID = 1
+
+GET /record/ - get all records
+GET /record/id/1 - get record with ID = 1
+POST /record/ - create new record
+DELETE /record/id/1	- delete record with ID = 1
+
+
+
+
 
 Filter
 ------
