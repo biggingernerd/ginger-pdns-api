@@ -1,5 +1,18 @@
 <?php
+/**
+ * Module_Domain 
+ * 
+ * @author Big Ginger Nerd
+ */
 
+
+/**
+ * Module_Domain
+ *
+ * @package ginger-pdns-api 
+ * @extends Module
+ * @todo 
+ */
 class Module_Domain extends Module 
 {
 	private $_validationRules = array(

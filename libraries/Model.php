@@ -8,8 +8,7 @@
   /**
    * This is the Model class
    *
-   * @package Dashboard 
-   * @subpackage Model
+   * @package ginger-pdns-api 
    */
   class Model
   {
