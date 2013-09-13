@@ -8,6 +8,11 @@ class Model_Domain extends Model {
 
 		$this->setOrderBy('id');
 		parent::__construct();
+	}	
+	
+	public function checkIfNameExists($name)
+	{
+		
 	}
 	
 }

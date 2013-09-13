@@ -366,10 +366,9 @@
      * 
      * @access public
      * @param mixed $id
-     * @param bool $hard (default: false)
      * @return void
      */
-    public function delete($id, $hard = false)
+    public function delete($id)
     {
 
         $stmt = $this->_connection->prepare("DELETE FROM " . $this->_tableName . " WHERE " . $this->_idColumn . " = :id");
